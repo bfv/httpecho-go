@@ -43,7 +43,7 @@ jobs:
         
     # Run build of the application
     - name: Run build
-      run: 
+      run: |
         mkdir build/
         go build -o build/httpecho .
 

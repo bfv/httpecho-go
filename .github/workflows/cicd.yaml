@@ -87,5 +87,5 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        repository: devbfvio/httpecho
-        tag_with_ref: true
+        tags: devbfvio/httpecho:latest
+        #tag_with_ref: true

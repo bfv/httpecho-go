@@ -55,7 +55,7 @@ jobs:
     
     # copy Dockerfile
     - name: copy repo artifacts
-      run: cp ./Dockerfile build/
+      run: cp $GITHUB_WORKSPACE/Dockerfile build/
         
     - name: Save build artifacts
       uses: actions/upload-artifact@v2

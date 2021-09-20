@@ -43,14 +43,27 @@ jobs:
         
     # Run build of the application
     - name: Run build
-      run: go build -o httpecho .
-      
+      run: 
+        mkdir build/
+        go build -o build/httpecho .
+
+    # copy Dockerfile
+    - name: copy repo artifacts
+      run: 
+        cp Dockerfile build/
+        
     # Run vet & lint on the code
     - name: Run vet & lint
       run: |
         go vet .
         golint .
     
+    - name: Save build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-artifact
+        path: build/
+        retention-days: 1
     # Run testing on the code
     # - name: Run testing
     #   run: cd test && go test -v

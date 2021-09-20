@@ -52,8 +52,8 @@ jobs:
         golint .
     
     # Run testing on the code
-    - name: Run testing
-      run: cd test && go test -v
+    # - name: Run testing
+    #   run: cd test && go test -v
     
     # Send slack notification
     # - name: Send slack notification

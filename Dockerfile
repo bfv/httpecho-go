@@ -9,4 +9,6 @@ RUN chmod +x /app/httpecho
 
 USER httpecho
 
+EXPOSE 1323
+
 CMD [ "/app/httpecho" ]

@@ -1,10 +1,7 @@
-FROM alpine:latest
+FROM ubuntu:latest
 
 # ubuntu
-# RUN useradd httpecho
-
-# alpine
-RUN adduser -S httpecho
+RUN useradd httpecho
 
 RUN mkdir /app
 COPY build/httpecho /app

@@ -43,6 +43,9 @@ jobs:
         
     # Run build of the application
     - name: Run build
+      env:
+        GOOS: linux
+        GOARCH: amd64
       run: |
         mkdir build/
         go build -o build/httpecho .

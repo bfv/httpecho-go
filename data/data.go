@@ -5,6 +5,7 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"runtime"
 	"strconv"
 
 	"github.com/labstack/echo/v4"
@@ -71,6 +72,8 @@ func addHostInfo(req *RequestData) {
 	req.Host = host
 	host["hostname"], _ = os.Hostname()
 	host["ip"] = localIP.String()
+	host["GOOS"] = runtime.GOOS
+	host["GOARCH"] = runtime.GOARCH
 }
 
 func getOutboundIP() net.IP {

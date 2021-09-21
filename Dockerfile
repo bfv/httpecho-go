@@ -1,6 +1,6 @@
-FROM alpine:latest
+FROM ubuntu:latest
 
-RUN addgroup -S httpecho && adduser -S httpecho -G httpecho
+RUN useradd httpecho
 
 RUN mkdir /app
 COPY build/httpecho /app

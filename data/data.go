@@ -1,7 +1,6 @@
 package data
 
 import (
-	"net"
 	"net/http"
 	"os"
 
@@ -49,7 +48,7 @@ func addHostInfo(req *RequestData) {
 	req.Host = host
 	host["hostname"], _ = os.Hostname()
 
-	conn, _ := net.Dial("ip:icmp", "google.com")
-	host["ip"] = conn.LocalAddr().String()
+	// conn, _ := net.Dial("ip:icmp", "google.com")
+	// host["ip"] = conn.LocalAddr().String()
 
 }

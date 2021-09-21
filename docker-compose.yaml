@@ -1,0 +1,22 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  echo1:
+    image: devbfvio/httpecho:latest
+    ports: 
+      - 11001:1323
+    environment:
+      - INSTANCE_NAME=echo1   
+  echo2:
+    image: devbfvio/httpecho:latest
+    ports: 
+      - 11002:1323
+    environment:
+      - INSTANCE_NAME=echo2   
+  echo3:
+    image: devbfvio/httpecho:latest
+    ports: 
+      - 11003:1323
+    environment:
+      - INSTANCE_NAME=echo3   
+
+

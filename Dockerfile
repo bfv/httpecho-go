@@ -4,7 +4,7 @@ FROM alpine:latest
 # RUN useradd httpecho
 
 # alpine
-RUN adduser httpecho
+RUN adduser -S httpecho
 
 RUN mkdir /app
 COPY build/httpecho /app

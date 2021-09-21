@@ -72,8 +72,8 @@ func addHostInfo(req *RequestData) {
 	req.Host = host
 	host["hostname"], _ = os.Hostname()
 	host["ip"] = localIP.String()
-	host["GOOS"] = runtime.GOOS
-	host["GOARCH"] = runtime.GOARCH
+	host["os"] = runtime.GOOS
+	host["architecture"] = runtime.GOARCH
 }
 
 func getOutboundIP() net.IP {

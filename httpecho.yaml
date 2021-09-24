@@ -1,0 +1,42 @@
+
+http:
+  routers:
+    unsecurerouter:
+      rule: "Host(`ps.bfv.io`)"
+      service: wrr
+
+  services:
+    wrr:
+      weighted:
+        services:
+          - name: backend1
+            weight: 3
+          - name: backend2
+            weight: 2
+          - name: backend3
+            weight: 1
+    backend1:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:11001/"
+    backend2:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:11002/"
+    backend3:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:11003/"
+
+# tls:
+#     options:
+#         tlsoptions:
+#             minVersion: VersionTLS12
+
+    # securerouter:
+    #   rule: "Host(`ps.bfv.io`)"
+    #   service: wrr
+    #   tls:
+    #     certResolver: ps-bfv-io-resolver
+
+#EOF

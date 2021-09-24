@@ -1,0 +1,25 @@
+
+log:
+  level: DEBUG
+
+entryPoints:
+  unsecure:
+    address: :80
+
+providers:
+  file: 
+    filename: httpecho.yaml
+    watch: true
+
+#EOF
+
+  # secure:
+  #   address: :443
+
+# certificatesResolvers:
+#     ps-bfv-io-resolver:
+#         acme:
+#             email: dev@bfv.io
+#             storage: acme.json
+#             httpChallenge:
+#                 entryPoint: unsecure

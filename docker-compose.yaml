@@ -1,22 +1,47 @@
 version: "3.9"  # optional since v1.27.0
 services:
+  reverse-proxy:
+    image: traefik:v2.5
+    command: 
+      - "--log.level=DEBUG"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      #- "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+      - "--certificatesresolvers.myresolver.acme.email=dev@bfv.io"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "./letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
   echo1:
     image: devbfvio/httpecho:latest
     ports: 
-      - 11001:1323
+      - 1323
     environment:
       - INSTANCE_NAME=echo1   
-  echo2:
-    image: devbfvio/httpecho:latest
-    ports: 
-      - 11002:1323
-    environment:
-      - INSTANCE_NAME=echo2   
-  echo3:
-    image: devbfvio/httpecho:latest
-    ports: 
-      - 11003:1323
-    environment:
-      - INSTANCE_NAME=echo3   
+    labels:
+      - "traefik.http.routers.httpecho.rule=Host(`ps.bfv.io`)"
+  # echo2:
+  #   image: devbfvio/httpecho:latest
+  #   ports: 
+  #     - 11002:1323
+  #   environment:
+  #     - INSTANCE_NAME=echo2   
+  #   labels:
+  #     - "traefik.http.routers.httpecho.rule=Host(`ps.bfv.io`)"
+  # echo3:
+  #   image: devbfvio/httpecho:latest
+  #   ports: 
+  #     - 11003:1323
+  #   environment:
+  #     - INSTANCE_NAME=echo3   
+  #   labels:
+  #     - "traefik.http.routers.httpecho.rule=Host(`ps.bfv.io`)"
 
 

@@ -11,6 +11,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+// RequestData struct holds the data to be returned (and reflect how the request looks like)
 type RequestData struct {
 	Host        map[string]string `json:"host"`
 	Environment map[string]string `json:"env"`
@@ -20,6 +21,7 @@ type RequestData struct {
 	Body        string            `json:"body"`
 }
 
+// GetHeaders reads http.Header and put them in a req.Headers map
 func (req *RequestData) GetHeaders(h http.Header) {
 	if req.Headers == nil {
 		req.Headers = make(map[string]string)
@@ -29,6 +31,7 @@ func (req *RequestData) GetHeaders(h http.Header) {
 	}
 }
 
+// Caller contains informatie of the client which made the request
 type Caller struct {
 	IP string `json:"ip"`
 }
@@ -36,6 +39,7 @@ type Caller struct {
 var localIP net.IP
 var calls int
 
+// GetCallData turns a echo.Context into a RequestData struct
 func GetCallData(c echo.Context) RequestData {
 
 	calls++

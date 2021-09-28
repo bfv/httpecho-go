@@ -7,6 +7,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+// GetHandler is the handler for /get requests
 func GetHandler(c echo.Context) error {
 	data := data.GetCallData(c)
 	return c.JSON(http.StatusOK, data)

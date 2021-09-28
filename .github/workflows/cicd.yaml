@@ -60,7 +60,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: build-artifact
-        path: build/httpecho
+        path: build/httpecho-linux
         retention-days: 1
     # Run testing on the code
     # - name: Run testing
@@ -90,7 +90,7 @@ jobs:
     - uses: actions/download-artifact@v2
       with:
         name: build-artifact
-        path: build/httpecho
+        path: build/httpecho-linux
     
     - name: Login to DockerHub
       uses: docker/login-action@v1

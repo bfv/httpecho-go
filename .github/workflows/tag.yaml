@@ -103,5 +103,5 @@ jobs:
         file: ./Dockerfile
         platforms: linux/amd64
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/httpecho:${{ RELEASE_VERSION }}
+        tags: ${{ secrets.DOCKER_USERNAME }}/httpecho:${{ env.RELEASE_VERSION }}
         #tag_with_ref: true

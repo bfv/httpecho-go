@@ -42,6 +42,9 @@ var calls int
 // GetCallData turns a echo.Context into a RequestData struct
 func GetCallData(c echo.Context) RequestData {
 
+	e := echo.New()
+	e.IPExtractor = echo.ExtractIPDirect()
+
 	calls++
 
 	data := RequestData{}

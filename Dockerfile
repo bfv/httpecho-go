@@ -6,7 +6,7 @@ RUN useradd httpecho
 RUN mkdir /app
 COPY build/httpecho-linux /app/
 
-RUN mv httpecho-linux httpecho && \
+RUN mv /app/httpecho-linux /app/httpecho && \
     chmod +x /app/httpecho
 
 USER httpecho

@@ -4,9 +4,10 @@ FROM ubuntu:latest
 RUN useradd httpecho
 
 RUN mkdir /app
-COPY build/httpecho-linux /app/httpecho
+COPY build/httpecho-linux /app/
 
-RUN chmod +x /app/httpecho
+RUN mv httpecho-linux httpecho && \
+    chmod +x /app/httpecho
 
 USER httpecho
 

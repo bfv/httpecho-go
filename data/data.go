@@ -43,7 +43,7 @@ var calls int
 func GetCallData(c echo.Context) RequestData {
 
 	e := echo.New()
-	e.IPExtractor = echo.ExtractIPDirect()
+	e.IPExtractor = echo.ExtractIPFromXFFHeader()
 
 	calls++
 

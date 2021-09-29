@@ -77,14 +77,14 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2
 
+    - name: Set env
+      run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
     - uses: actions/download-artifact@v2
       with:
         name: build-artifact
         path: build/httpecho-linux
-    
-    - uses: little-core-labs/get-git-tag@v3.0.1
-      id: tagName
-            
+                
     - name: Login to DockerHub
       uses: docker/login-action@v1
       with:
@@ -103,5 +103,5 @@ jobs:
         file: ./Dockerfile
         platforms: linux/amd64
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/httpecho:$GIT_TAG_NAME
+        tags: ${{ secrets.DOCKER_USERNAME }}/httpecho:$RELEASE_VERSION
         #tag_with_ref: true

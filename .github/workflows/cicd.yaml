@@ -71,6 +71,7 @@ jobs:
     - name: Send slack notification
       uses: 8398a7/action-slack@v3
       with:
+        author_name: "httpecho cicd action"
         status: ${{ job.status }}
         fields: repo,message,commit,author,action,eventName,ref,workflow,job,took # selectable (default: repo,message)
       env:

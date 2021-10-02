@@ -32,5 +32,5 @@ func setupServers() {
 	if err := s.ListenAndServe(); err != http.ErrServerClosed {
 		log.Fatal(err)
 	}
-error on purpose
+
 }

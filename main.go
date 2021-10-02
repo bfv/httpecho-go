@@ -1,8 +1,6 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 
@@ -15,6 +13,7 @@ func main() {
 }
 
 func setupServers() {
+
 	e := echo.New()
 
 	s := http.Server{
@@ -23,15 +22,7 @@ func setupServers() {
 	}
 
 	e.GET("/get", handlers.GetHandler)
-
-	e.GET("/get2", func(c echo.Context) error {
-		res, err := json.Marshal(c)
-		if err != nil {
-			fmt.Println(err)
-			return c.String(http.StatusInternalServerError, err.Error())
-		}
-		return c.JSON(http.StatusOK, string(res))
-	})
+	e.POST("/post", handlers.PostHandler)
 
 	e.GET("/quit", func(c echo.Context) error {
 		defer s.Close()

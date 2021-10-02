@@ -1,6 +1,7 @@
 package data
 
 import (
+	"io"
 	"log"
 	"net"
 	"net/http"
@@ -56,6 +57,12 @@ func GetCallData(c echo.Context) RequestData {
 
 	data.Caller = Caller{
 		IP: c.RealIP(),
+	}
+
+	// body
+	if c.Request().Body != nil {
+		body, _ := io.ReadAll(c.Request().Body)
+		data.Body = string(body)
 	}
 
 	return data

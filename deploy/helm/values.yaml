@@ -1,0 +1,13 @@
+
+deployment:
+  version: 1.0.0
+  replicas: 4
+  container: 
+    image: devbfvio/httpecho:v0.2.2
+    port: 1323
+service:
+  name: httpecho-service
+  port: 80
+ingress:
+  http:
+    path: /

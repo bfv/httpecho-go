@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpecho-deployment
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: httpecho
+  template:
+    metadata:
+      labels:
+        app: httpecho
+    spec:
+      containers:
+      - name: httpecho
+        image: {{ .Values.deployment.container.image }}
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: {{ .Values.deployment.container.port }}
